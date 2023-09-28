@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ButtonUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public TMP_Text yearCounter;
+    public int year = 2023;
+
+    public void AdvanceYearButton() 
     {
-        
+        year++;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        yearCounter.SetText(""+ year);
     }
 }
