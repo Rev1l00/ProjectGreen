@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 503004340}
   - component: {fileID: 503004343}
   - component: {fileID: 503004341}
+  - component: {fileID: 503004344}
   m_Layer: 5
   m_Name: SouthAmerica
   m_TagString: Untagged
@@ -512,6 +513,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503004339}
   m_CullTransparentMesh: 1
+--- !u!114 &503004344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503004339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf3ec8cf17af451d8d9c46842d6872e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &754691647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,7 +1823,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1664300650}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1892,7 +1905,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Australia
+  m_text: Oseania
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
