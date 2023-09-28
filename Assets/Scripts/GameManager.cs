@@ -33,4 +33,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("South America Pressed");
         
     }
+
+    public void AU_button()
+    {
+        Debug.Log("Australia Pressed");
+        
+    }
 }
