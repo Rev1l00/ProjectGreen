@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,4 +35,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Australia Pressed");
     }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("Button clicked!");
+    }
+
 }
