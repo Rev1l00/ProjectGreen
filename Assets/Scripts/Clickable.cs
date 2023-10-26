@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Clickable : MonoBehaviour
 {
     public float alphaThreshold = 0.1f;
+    public SquarePlacement squarePlacement; // Reference to the SquarePlacement script.
 
     void Start()
     {
@@ -14,6 +15,10 @@ public class Clickable : MonoBehaviour
 
     public void buttn_pressed()
     {
-        Debug.Log(this + " was pressed!");
+        if (!squarePlacement.inPlacementMode)
+        {
+            Debug.Log(this + " was pressed!");
+            // Add any other functionality you want to perform when clicking.
+        }
     }
 }

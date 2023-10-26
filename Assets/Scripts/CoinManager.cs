@@ -6,7 +6,7 @@ using TMPro;
 public class CoinManager : MonoBehaviour
 {
     public TMP_Text coinText;
-    public int coinCount = 0;
+    public int coinCount = 999999;
 
     public void AddCoins()
     {
