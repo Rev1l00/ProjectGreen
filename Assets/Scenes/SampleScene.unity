@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cafd3bd28fcf244ad2967242373824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contButtons: {fileID: 0}
+  contButtons: {fileID: 1102244814}
   alphaThreshold: 0.1
   squarePlacement: {fileID: 1289258502}
 --- !u!114 &592472364
@@ -2166,7 +2166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cafd3bd28fcf244ad2967242373824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contButtons: {fileID: 0}
+  contButtons: {fileID: 1102244814}
   alphaThreshold: 0.1
   squarePlacement: {fileID: 1289258502}
 --- !u!114 &786177250
@@ -2449,7 +2449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cafd3bd28fcf244ad2967242373824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contButtons: {fileID: 0}
+  contButtons: {fileID: 1102244814}
   alphaThreshold: 0.1
   squarePlacement: {fileID: 1289258502}
 --- !u!114 &949331560
@@ -2950,7 +2950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cafd3bd28fcf244ad2967242373824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contButtons: {fileID: 0}
+  contButtons: {fileID: 1102244814}
   alphaThreshold: 0.1
   squarePlacement: {fileID: 1289258502}
 --- !u!114 &1200949190
@@ -5102,7 +5102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cafd3bd28fcf244ad2967242373824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contButtons: {fileID: 0}
+  contButtons: {fileID: 1102244814}
   alphaThreshold: 0.1
   squarePlacement: {fileID: 1289258502}
 --- !u!114 &2045910238
