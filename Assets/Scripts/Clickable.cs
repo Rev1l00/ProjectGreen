@@ -11,11 +11,13 @@ public class Clickable : MonoBehaviour
     void Start()
     {
         this.GetComponent<Image>().alphaHitTestMinimumThreshold = alphaThreshold;
+
+        squarePlacement = GameObject.Find("SquarePlacementController").GetComponent<SquarePlacement>();
     }
 
     public void buttn_pressed()
     {
-        if (!squarePlacement.inPlacementMode)
+        if (squarePlacement.inPlacementMode == false)
         {
             Debug.Log(this + " was pressed!");
             // Add any other functionality you want to perform when clicking.
