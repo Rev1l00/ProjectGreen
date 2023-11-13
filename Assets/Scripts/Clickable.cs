@@ -8,6 +8,7 @@ public class Clickable : MonoBehaviour
 {
     public static Clickable instance;
 
+    // Definerer alle objektene som skal brukes i koden
     public GameObject contButtons;
     public TMP_Text continentText;
     public SquarePlacement squarePlacement;
@@ -22,7 +23,7 @@ public class Clickable : MonoBehaviour
 
     void Start()
     {
-        this.GetComponent<Image>().alphaHitTestMinimumThreshold = alphaThreshold;
+        this.GetComponent<Image>().alphaHitTestMinimumThreshold = alphaThreshold;   // Henter bilde som skal 
         squarePlacement = GameObject.Find("SquarePlacementController").GetComponent<SquarePlacement>();
     }
 
@@ -32,7 +33,7 @@ public class Clickable : MonoBehaviour
         contButtons.SetActive(false);
         if (squarePlacement.inPlacementMode == false)
         {
-            Debug.Log(selectedCont + " was pressed!");
+            // Debug.Log(selectedCont + " was pressed!");
             continentText.SetText(selectedCont);
             contButtons.SetActive(true);
         }
@@ -41,7 +42,6 @@ public class Clickable : MonoBehaviour
     public void info_btn()
     {
         selectedCont = continentText.text;
-        Debug.Log(selectedCont);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
