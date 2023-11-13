@@ -14,10 +14,16 @@ public class Clickable : MonoBehaviour
     // Definerer en variabel som lagrer hvilket kontinent brukeren skal se info om og
     public string selectedCont = "None";
     public float alphaThreshold = 0.1f;
+    public bool placingLab;
 
     private void Awake()
     {
         instance = this;
+    }
+
+    void Update()
+    {
+        placingLab = SquarePlacement.instance.canPlace;
     }
 
     void Start()
@@ -31,7 +37,7 @@ public class Clickable : MonoBehaviour
         Debug.Log(SquarePlacement.instance.canPlace); // Tester om det funker
         contButtons.SetActive(false);   // Setter at info knappene skal være deaktivert fra start
 
-        if (SquarePlacement.instance.canPlace == false)
+        if (placingLab == false)
         {
             Debug.Log(selectedCont + " was pressed!");  // Tester om det funker
             continentText.SetText(selectedCont);    // Setter navnet på kontinentet over knappene sånn at spilleren vet hvilket kontinent som har blitt trykket på

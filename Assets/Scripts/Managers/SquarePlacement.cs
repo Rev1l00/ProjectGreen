@@ -17,10 +17,6 @@ public class SquarePlacement : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    private void Start()
-    {
         mainCamera = Camera.main;   // Henter kameraet
     }
 
@@ -33,10 +29,12 @@ public class SquarePlacement : MonoBehaviour
             if (placementArea.OverlapPoint(mousePosition))  // Sjekker om brukeren har trykket på ett gyldig område
             {
                 Instantiate(squarePrefab, mousePosition, Quaternion.identity);  // Plasserer ett ikon der spilleren har trykket
-                canPlace = false;
                 coinManager.DeductCoins(10);    // Tar bort 10 mynter
                 inPlacementMode = false;
             }
+            
+            Debug.Log(canPlace);
+            canPlace = false;
         }
     }
 

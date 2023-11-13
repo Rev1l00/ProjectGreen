@@ -14,11 +14,13 @@ public class InfoManager : MonoBehaviour
     public TMP_Text tempValue;
     public TMP_Text stationsValue;
 
-    // Definerer variabler og lister for alle kontinent verdiene
-    public string population;
-    public string income;
-    public string averageTemp;
-    public string researchStations;
+    // Definerer variabler for alle kontinent verdiene
+    private string population;
+    private string income;
+    private string averageTemp;
+    private string researchStations;
+
+    // Definerer lister som skal inneholde alle verdiene for vert kontinent
     List<int> North_America = new List<int>{378904407, 0, 11, 0};
     List<int> South_America = new List<int>{378904407, 0, 30, 0};
     List<int> Europe = new List<int>{378904407, 0, 11, 0};
