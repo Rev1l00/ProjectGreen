@@ -18,20 +18,20 @@ public class Clickable : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        contButtons.SetActive(false);   // Setter at info knappene skal være deaktivert fra start
     }
 
     void Start()
     {
         this.GetComponent<Image>().alphaHitTestMinimumThreshold = alphaThreshold;
+        selectedCont = this.name;   // Lagrer kontinentet brukeren vill se info om 
     }
 
     public void btn_pressed()
     {
         Debug.Log(SquarePlacement.instance.canPlace); // Tester om det funker
-        selectedCont = this.name;   // Lagrer kontinentet brukeren vill se info om 
+        contButtons.SetActive(false);   // Setter at info knappene skal være deaktivert fra start
 
-        if (!SquarePlacement.instance.canPlace)
+        if (SquarePlacement.instance.canPlace == false)
         {
             Debug.Log(selectedCont + " was pressed!");  // Tester om det funker
             continentText.SetText(selectedCont);    // Setter navnet på kontinentet over knappene sånn at spilleren vet hvilket kontinent som har blitt trykket på
