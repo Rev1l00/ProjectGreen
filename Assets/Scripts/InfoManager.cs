@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InfoManager : MonoBehaviour
 {
@@ -40,7 +39,7 @@ public class InfoManager : MonoBehaviour
 
     private void GetValues(List<int> continent)
     {
-        // Henter verdiene fra en liste
+        // Henter verdiene fra en liste som har verdiene til ett kontinent
         population = continent[0].ToString();
         income = continent[1].ToString();
         averageTemp = continent[2].ToString();

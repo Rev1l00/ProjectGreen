@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class Clickable : MonoBehaviour
 {
@@ -11,34 +10,36 @@ public class Clickable : MonoBehaviour
     // Definerer alle objektene som skal brukes i koden
     public GameObject contButtons;
     public TMP_Text continentText;
-    public SquarePlacement squarePlacement;
 
-    public float alphaThreshold = 0.1f;
+    // Definerer en variabel som lagrer hvilket kontinent brukeren skal se info om og
     public string selectedCont = "None";
+    public float alphaThreshold = 0.1f;
 
     private void Awake()
     {
         instance = this;
+        contButtons.SetActive(false);   // Setter at info knappene skal være deaktivert fra start
     }
 
     void Start()
     {
-        this.GetComponent<Image>().alphaHitTestMinimumThreshold = alphaThreshold;   // Henter bilde som skal 
-        squarePlacement = GameObject.Find("SquarePlacementController").GetComponent<SquarePlacement>();
+        this.GetComponent<Image>().alphaHitTestMinimumThreshold = alphaThreshold;
     }
 
     public void btn_pressed()
     {
-        selectedCont = this.name;
-        contButtons.SetActive(false);
-        if (squarePlacement.inPlacementMode == false)
+        Debug.Log(SquarePlacement.instance.canPlace); // Tester om det funker
+        selectedCont = this.name;   // Lagrer kontinentet brukeren vill se info om 
+
+        if (!SquarePlacement.instance.canPlace)
         {
-            // Debug.Log(selectedCont + " was pressed!");
-            continentText.SetText(selectedCont);
-            contButtons.SetActive(true);
+            Debug.Log(selectedCont + " was pressed!");  // Tester om det funker
+            continentText.SetText(selectedCont);    // Setter navnet på kontinentet over knappene sånn at spilleren vet hvilket kontinent som har blitt trykket på
+            contButtons.SetActive(true);    // Aktiverer info knappene
         }
     }
 
+    // Lagrer navnet på kontinentet som skal brukes på info siden og sender spilleren til info siden
     public void info_btn()
     {
         selectedCont = continentText.text;
