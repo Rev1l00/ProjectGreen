@@ -7,6 +7,6 @@ public class canvasManager : MonoBehaviour
     public void disableContButtons()
     {
         contButtons.SetActive(false);
-        Debug.Log("Pressed");
+        Debug.Log("Ocean was pressed");
     }
 }

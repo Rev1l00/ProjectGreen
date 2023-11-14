@@ -9,10 +9,7 @@ public class SquarePlacement : MonoBehaviour
     private Camera mainCamera;
     public CoinManager coinManager;
     public Collider2D placementArea;
-    
-    // Definerer variabler
-    public bool canPlace = false;
-    public bool inPlacementMode = false;
+    public ClickManager clickManager;
 
     private void Awake()
     {
@@ -22,7 +19,7 @@ public class SquarePlacement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canPlace && coinManager.coinCount >= 10) // Sjekker om brukkeren trykker, kan plasere og har nokk penger
+        if (Input.GetMouseButtonDown(0) && clickManager.placingLab && coinManager.coinCount >= 10) // Sjekker om brukkeren trykker, kan plasere og har nokk penger
         {
             Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); // Henter lokasjonen til musepekeren
 
@@ -30,18 +27,14 @@ public class SquarePlacement : MonoBehaviour
             {
                 Instantiate(squarePrefab, mousePosition, Quaternion.identity);  // Plasserer ett ikon der spilleren har trykket
                 coinManager.DeductCoins(10);    // Tar bort 10 mynter
-                inPlacementMode = false;
+                Debug.Log("Research station was placed");
             }
-            
-            Debug.Log(canPlace);
-            canPlace = false;
         }
     }
 
     // Gjør sånn at man kan plassere en research stasjon når man har trykket på en knapp
     public void AllowPlacement()
     {
-        canPlace = true;
-        inPlacementMode = true;
+        clickManager.placingLab = true;
     }
 }

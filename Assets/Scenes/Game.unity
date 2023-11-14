@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 120530200}
   - component: {fileID: 120530199}
   - component: {fileID: 120530198}
+  - component: {fileID: 120530201}
   m_Layer: 5
   m_Name: ResearchBtn
   m_TagString: Untagged
@@ -582,7 +583,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 120530199}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 120530201}
+        m_TargetAssemblyTypeName: Clickable, Assembly-CSharp
+        m_MethodName: Research_btn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &120530199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +634,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120530196}
   m_CullTransparentMesh: 1
+--- !u!114 &120530201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120530196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cafd3bd28fcf244ad2967242373824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contButtons: {fileID: 1102244814}
+  continentText: {fileID: 135151351}
+  clickManager: {fileID: 0}
+  selectedCont: None
+  alphaThreshold: 0.1
 --- !u!1 &135151349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,9 +1144,55 @@ Transform:
   - {fileID: 1954274897}
   - {fileID: 743084336}
   - {fileID: 1289258503}
+  - {fileID: 307809756}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &307809755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307809756}
+  - component: {fileID: 307809757}
+  m_Layer: 0
+  m_Name: ClickManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &307809756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307809755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 281948013}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &307809757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307809755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404d0d60bf10645409df3876d50938fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placingLab: 0
 --- !u!1 &374034517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,9 +1827,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contButtons: {fileID: 1102244814}
   continentText: {fileID: 135151351}
-  squarePlacement: {fileID: 1289258502}
-  alphaThreshold: 0.1
+  clickManager: {fileID: 307809757}
   selectedCont: 
+  alphaThreshold: 0.1
 --- !u!114 &586607690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1903,9 +1979,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contButtons: {fileID: 1102244814}
   continentText: {fileID: 135151351}
-  squarePlacement: {fileID: 1289258502}
-  alphaThreshold: 0.1
+  clickManager: {fileID: 307809757}
   selectedCont: 
+  alphaThreshold: 0.1
 --- !u!114 &592472364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2307,9 +2383,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contButtons: {fileID: 1102244814}
   continentText: {fileID: 135151351}
-  squarePlacement: {fileID: 1289258502}
-  alphaThreshold: 0.1
+  clickManager: {fileID: 307809757}
   selectedCont: 
+  alphaThreshold: 0.1
 --- !u!114 &786177250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2592,9 +2668,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contButtons: {fileID: 1102244814}
   continentText: {fileID: 135151351}
-  squarePlacement: {fileID: 1289258502}
-  alphaThreshold: 0.1
+  clickManager: {fileID: 307809757}
   selectedCont: 
+  alphaThreshold: 0.1
 --- !u!114 &949331560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3096,9 +3172,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contButtons: {fileID: 1102244814}
   continentText: {fileID: 135151351}
-  squarePlacement: {fileID: 1289258502}
-  alphaThreshold: 0.1
+  clickManager: {fileID: 307809757}
   selectedCont: 
+  alphaThreshold: 0.1
 --- !u!114 &1200949190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3492,11 +3568,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f227f388a99b44db1058117c4e5756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canPlace: 0
   squarePrefab: {fileID: 8104994529992984203, guid: ad4a3803d907bd34c8f6e50373372c04, type: 3}
   coinManager: {fileID: 743084335}
   placementArea: {fileID: 577279362}
-  inPlacementMode: 0
+  clickManager: {fileID: 307809757}
 --- !u!4 &1289258503
 Transform:
   m_ObjectHideFlags: 0
@@ -4525,9 +4600,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contButtons: {fileID: 1102244814}
   continentText: {fileID: 135151351}
-  squarePlacement: {fileID: 0}
-  alphaThreshold: 0.1
+  clickManager: {fileID: 0}
   selectedCont: 
+  alphaThreshold: 0.1
 --- !u!1 &1705916751
 GameObject:
   m_ObjectHideFlags: 0
@@ -5351,9 +5426,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contButtons: {fileID: 1102244814}
   continentText: {fileID: 135151351}
-  squarePlacement: {fileID: 1289258502}
-  alphaThreshold: 0.1
+  clickManager: {fileID: 307809757}
   selectedCont: 
+  alphaThreshold: 0.1
 --- !u!114 &2045910238
 MonoBehaviour:
   m_ObjectHideFlags: 0

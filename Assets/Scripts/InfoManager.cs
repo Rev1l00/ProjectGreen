@@ -21,14 +21,14 @@ public class InfoManager : MonoBehaviour
     private string researchStations;
 
     // Definerer lister som skal inneholde alle verdiene for vert kontinent
-    List<int> North_America = new List<int>{378904407, 0, 11, 0};
-    List<int> South_America = new List<int>{378904407, 0, 30, 0};
-    List<int> Europe = new List<int>{378904407, 0, 11, 0};
-    List<int> Asia = new List<int>{378904407, 0, 11, 0};
-    List<int> Africa = new List<int>{378904407, 0, 11, 0};
-    List<int> Oceania = new List<int>{378904407, 0, 11, 0};
+    private List<int> North_America = new() { 378904407, 0, 11, 0 };
+    private List<int> South_America = new() { 378904407, 0, 30, 0 };
+    private List<int> Europe = new() { 378904407, 0, 11, 0 };
+    private List<int> Asia = new() { 378904407, 0, 11, 0 };
+    private List<int> Africa = new() { 378904407, 0, 11, 0 };
+    private List<int> Oceania = new() { 378904407, 0, 11, 0 };
 
-    void Start()
+    private void Start()
     {
         // Henter og setter tittelen/navnet på kontinentet som spilleren vill se info om fra scriptet "Clickable"
         infoTitle = Clickable.instance.selectedCont;
