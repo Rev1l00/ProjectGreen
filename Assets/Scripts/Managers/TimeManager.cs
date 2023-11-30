@@ -1,54 +1,71 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
-    public static int currentYear = 2023;
-    public static int monthsPerYear = 12;
-    public static int gameDurationInYears = 100;
+    [Header("Time Settings")]
+    public float secondsPerMonth = 1.0f; // Change this value in the Unity Editor to control the speed of time passage
+    public int startYear = 2023;
 
-    public float timeScale = 1f;
+    [Header("UI Display")]
+    public TextMeshProUGUI timeDisplay; // Reference to your TextMeshPro text object
 
-    private float timePassed;
-    private float monthDuration = 1f;
+    private float timePassed; // in seconds
+    private int monthsPassed;
+    private int yearsPassed;
 
     private void Update()
     {
         timePassed += Time.deltaTime;
-        Debug.Log(timePassed);
 
-        if (timePassed >= monthDuration)
+        // Check if a month has passed
+        if (timePassed >= secondsPerMonth)
         {
-            timePassed -= monthDuration;
-            AdvanceTime();
-        }
+            timePassed -= secondsPerMonth;
 
-        if (currentYear - 2023 >= gameDurationInYears)
-        {
-            EndGame();
-        }
+            monthsPassed++;
 
-        Time.timeScale = timeScale;
+            // Update the year at the start of each new year
+            if (monthsPassed % 12 == 0)
+            {
+                yearsPassed++;
+
+                // Check if a year has passed
+                if (yearsPassed == 100)
+                {
+                    Debug.Log("100 years have passed. Game over!");
+                    // Add any additional logic you want to execute after 100 years
+                }
+            }
+
+            // Update the TextMeshPro text object
+            UpdateTimeDisplay();
+        }
     }
 
-    private void AdvanceTime()
+    private void UpdateTimeDisplay()
     {
-        int monthsPassed = Mathf.FloorToInt(timePassed / monthDuration);
-        // Debug.Log(monthsPassed);
-        timePassed -= monthsPassed * monthDuration;
+        // Calculate the current month and year for display
+        int currentMonth = (monthsPassed % 12 == 0) ? 12 : monthsPassed % 12;
+        int currentYear = startYear + monthsPassed / 12;
 
-        // Update the current year
-        currentYear += monthsPassed / monthsPerYear;
+        // Add leading zero to the month if necessary
+        string monthString = (currentMonth < 10) ? $"0{currentMonth}" : currentMonth.ToString();
 
-        // Update the current month
-        int currentMonth = Mathf.FloorToInt((currentYear - 2023) * monthsPerYear) + 1;
+        // Combine the month and year for display
+        string timeString = $"{monthString}/{currentYear}";
 
-        // Print the current year and month for debugging
-        Debug.Log("Current Year: " + currentYear + " Month: " + currentMonth);
-    }
-
-    private void EndGame()
-    {
-        Debug.Log("Game Over! 100 years have passed");
+        // Check if the TextMeshPro text object is assigned
+        if (timeDisplay != null)
+        {
+            // Update the text
+            timeDisplay.text = timeString;
+        }
+        else
+        {
+            // Log a warning if the TextMeshPro text object is not assigned
+            Debug.LogWarning("TextMeshPro text object not assigned to TimeTracker script.");
+        }
     }
 }
