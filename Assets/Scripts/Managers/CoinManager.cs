@@ -1,10 +1,20 @@
 using UnityEngine;
 using TMPro;
 
-public class CoinManager : MonoBehaviour
+public class CoinManager : MonoBehaviour, IDataPersistence
 {
-    public TMP_Text coinText;
     public int coinCount = 0;
+    public TMP_Text coinText;
+
+    public void LoadData(GameData data)
+    {
+        this.coinCount = data.coinCount;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.coinCount = this.coinCount;
+    }
 
     public void AddCoins()
     {
