@@ -4,68 +4,65 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
-    [Header("Time Settings")]
-    public float secondsPerMonth = 1.0f; // Change this value in the Unity Editor to control the speed of time passage
-    public int startYear = 2023;
+    public float resetTime = 13f; // Set the time to reset the timer in seconds
+    private float currentTime;
+    private float yearCount = 2022f;
+    public TextMeshProUGUI timerText; // Reference to a TextMeshProUGUI component to display the timer
 
-    [Header("UI Display")]
-    public TextMeshProUGUI timeDisplay; // Reference to your TextMeshPro text object
+    private bool isPaused = true; // Flag to track whether the timer is paused
 
-    private float timePassed; // in seconds
-    private int monthsPassed;
-    private int yearsPassed;
-
-    private void Update()
+    void Start()
     {
-        timePassed += Time.deltaTime;
+        ResetTimer();
+    }
 
-        // Check if a month has passed
-        if (timePassed >= secondsPerMonth)
+    void Update()
+    {
+        // Update the timer if not paused
+        if (!isPaused)
         {
-            timePassed -= secondsPerMonth;
+            currentTime += Time.deltaTime;
+            UpdateTimerDisplay();
 
-            monthsPassed++;
-
-            // Update the year at the start of each new year
-            if (monthsPassed % 12 == 0)
+            // Reset the timer if it reaches the specified reset time
+            if (currentTime >= resetTime)
             {
-                yearsPassed++;
-
-                // Check if a year has passed
-                if (yearsPassed == 100)
-                {
-                    Debug.Log("100 years have passed. Game over!");
-                    // Add any additional logic you want to execute after 100 years
-                }
+                ResetTimer();
             }
-
-            // Update the TextMeshPro text object
-            UpdateTimeDisplay();
         }
     }
 
-    private void UpdateTimeDisplay()
+    void UpdateTimerDisplay()
     {
-        // Calculate the current month and year for display
-        int currentMonth = (monthsPassed % 12 == 0) ? 12 : monthsPassed % 12;
-        int currentYear = startYear + monthsPassed / 12;
+        // Update the TextMeshProUGUI component with yearCount and seconds
+        timerText.text = string.Format("{1:0}/{0:0}", yearCount, Mathf.FloorToInt(currentTime));
+    }
 
-        // Add leading zero to the month if necessary
-        string monthString = (currentMonth < 10) ? $"0{currentMonth}" : currentMonth.ToString();
+    void ResetTimer()
+    {
+        // Reset the timer to zero and increase the yearCount
+        currentTime = 1f;
+        yearCount++;
+    }
 
-        // Combine the month and year for display
-        string timeString = $"{monthString}/{currentYear}";
+     // Function to speed up the time
+    public void SpeedUpTime(float factor)
+    {
+        isPaused = false;
+        Time.timeScale = factor;
+    }
 
-        // Check if the TextMeshPro text object is assigned
-        if (timeDisplay != null)
-        {
-            // Update the text
-            timeDisplay.text = timeString;
-        }
-        else
-        {
-            // Log a warning if the TextMeshPro text object is not assigned
-            Debug.LogWarning("TextMeshPro text object not assigned to TimeTracker script.");
-        }
+    // Function to pause the timer
+    public void PauseTime()
+    {
+        isPaused = true;
+        Time.timeScale = 0f; // Set timeScale to 0 for pause
+    }
+
+    // Function to normalize the time and unpause
+    public void NormalizeTime()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
     }
 }

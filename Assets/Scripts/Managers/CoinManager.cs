@@ -4,7 +4,7 @@ using TMPro;
 public class CoinManager : MonoBehaviour
 {
     public TMP_Text coinText;
-    public int coinCount = 999999;
+    public int coinCount = 0;
 
     public void AddCoins()
     {
@@ -25,6 +25,6 @@ public class CoinManager : MonoBehaviour
 
     public void Update()
     {
-        coinText.SetText("Coins: " + coinCount);
+        coinText.SetText(""+ coinCount);
     }
 }
