@@ -40,7 +40,15 @@ public class TimeManager : MonoBehaviour, IDataPersistence
     void UpdateTimerDisplay()
     {
         // Update the TextMeshProUGUI component with yearCount and seconds
-        timerText.text = string.Format("{1:0}/{0:0}", currentYear, Mathf.FloorToInt(currentMonth));
+        if (!isPaused && Time.timeScale > 1)
+        {
+            timerText.text = string.Format("{1:D2}/{0:0}" + "  x" + Time.timeScale, currentYear, Mathf.FloorToInt(currentMonth));
+        }
+        else
+        {
+            timerText.text = string.Format("{1:D2}/{0:0}", currentYear, Mathf.FloorToInt(currentMonth));
+        }
+
     }
 
     void ResetTimer()
