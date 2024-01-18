@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Research.unity
     guid: 5f777968ada12f945afbf0c80b16cd02
+  - enabled: 1
+    path: Assets/Scenes/MainGame.unity
+    guid: 91f894802d735da4482346fd6ab303c5
   m_configObjects: {}
