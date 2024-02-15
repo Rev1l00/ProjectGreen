@@ -9,10 +9,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button continueGameButton;
 
     private void Start() {
-        if (!DataPersistenceManager.instance.HasGameData())
-        {
-            continueGameButton.interactable = false;
-        }
+        // if (!DataPersistenceManager.instance.HasGameData())
+        // {
+        //     continueGameButton.interactable = false;
+        // }
     }
 
     public void PlayGame()
@@ -26,22 +26,22 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnNewGameClicked()
-    {
-        DisableMenuButtons();
-        // Create a new game
-        DataPersistenceManager.instance.NewGame();
-        SceneManager.LoadSceneAsync("Game");
-    }
+    // public void OnNewGameClicked()
+    // {
+    //     DisableMenuButtons();
+    //     // Create a new game
+    //     DataPersistenceManager.instance.NewGame();
+    //     SceneManager.LoadSceneAsync("Game");
+    // }
 
-    public void OnContinueGameClicked()
-    {
-        SceneManager.LoadSceneAsync("Game");
-    }
+    // public void OnContinueGameClicked()
+    // {
+    //     SceneManager.LoadSceneAsync("Game");
+    // }
 
-    private void DisableMenuButtons()
-    {
-        newGameButton.interactable = false;
-        continueGameButton.interactable = false;
-    }
+    // private void DisableMenuButtons()
+    // {
+    //     newGameButton.interactable = false;
+    //     continueGameButton.interactable = false;
+    // }
 }

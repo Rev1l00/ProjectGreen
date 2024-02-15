@@ -5,16 +5,16 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int coinCount;
-    public float currentMonth;
-    public float currentYear;
+    public int day;
+    public int month;
+    public int year;
 
     // The values defined in this constructor will be the default values
-    // The game starts with when there's no data to load.
+    // The game starts with when there's no data to load
     public GameData()
     {
-        this.coinCount = 0;
-        this.currentMonth = 1f;
-        this.currentYear = 2100f;
+        this.day = 1;
+        this.month = 1;
+        this.year = 2100;
     }
 }
