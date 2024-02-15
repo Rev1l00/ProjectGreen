@@ -1,106 +1,96 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
 
-public class TimeManager : MonoBehaviour, IDataPersistence
+public class TimeManager : MonoBehaviour
 {
-    public float resetTime = 13f; // Set the time to reset the timer in seconds
-    private float currentMonth;
-    private float currentYear;
-    public TextMeshProUGUI timerText; // Reference to a TextMeshProUGUI component to display the timer
+    private const int SecondsInDay = 1;
+    private const int DaysInMonth = 30;
+    private const int MonthsInYear = 12;
 
-    public Button playBtn;
-    public Button pauseBtn;
-    public Button fastForwardBtn;
+    public Button pauseButton;
+    public Button playButton;
+    public Button ffwButton;
 
-    private bool isPaused = true; // Flag to track whether the timer is paused
+    private int year = 2100;
+    private int month = 1;
+    private int day = 1;
+    private float timer = 0f;
+    private bool isPaused = true;
 
-    void Start()
-    {
-        UpdateTimerDisplay();
-    }
+    public TMP_Text dateText;
 
     void Update()
     {
-        // Update the timer if not paused
         if (!isPaused)
         {
-            currentMonth += Time.deltaTime;
-            UpdateTimerDisplay();
+            // Increase the timer by the time passed since the last frame
+            timer += Time.deltaTime;
 
-            // Reset the timer if it reaches the specified reset time
-            if (currentMonth >= resetTime)
+            // Check if one day has passed
+            if (timer >= SecondsInDay)
             {
-                ResetTimer();
+                // Update the day
+                timer -= SecondsInDay;
+                day++;
+
+                // Check if the month needs to be updated
+                if (day > DaysInMonth)
+                {
+                    day = 1;
+                    month++;
+
+                    // Check if the year needs to be updated
+                    if (month > MonthsInYear)
+                    {
+                        month = 1;
+                        year++;
+                    }
+                }
+
+                // Update the text object to display the current date
+                UpdateDateText();
             }
         }
     }
 
-    void UpdateTimerDisplay()
+    // Helper method to update the text object with the current date
+    private void UpdateDateText()
     {
-        // Update the TextMeshProUGUI component with yearCount and seconds
-        if (!isPaused && Time.timeScale > 1)
-        {
-            timerText.text = string.Format("{1:D2}/{0:0}" + "  x" + Time.timeScale, currentYear, Mathf.FloorToInt(currentMonth));
-        }
-        else
-        {
-            timerText.text = string.Format("{1:D2}/{0:0}", currentYear, Mathf.FloorToInt(currentMonth));
-        }
-
+        string formattedDay = day.ToString().PadLeft(2, '0');
+        string formattedMonth = month.ToString().PadLeft(2, '0');
+        dateText.text = string.Format("{0}/{1}/{2}", formattedDay, formattedMonth, year);
     }
 
-    void ResetTimer()
-    {
-        // Reset the timer to zero and increase the yearCount
-        currentMonth = 1f;
-        currentYear++;
-    }
-
-     // Function to speed up the time
-    public void SpeedUpTime(float factor)
-    {
-        isPaused = false;
-        Time.timeScale = factor;
-        EnableButtons();
-        fastForwardBtn.interactable = false;
-    }
-
-    // Function to pause the timer
+    // Function to pause the time
     public void PauseTime()
     {
         isPaused = true;
-        Time.timeScale = 0f; // Set timeScale to 0 for pause
-        EnableButtons();
-        pauseBtn.interactable = false;
+
+        pauseButton.interactable = false;
+        ffwButton.interactable = true;
+        playButton.interactable = true;
     }
 
-    // Function to normalize the time and unpause
-    public void NormalizeTime()
+    // Function to normalize the time (set time back to 2100/01/01)
+    public void UnpauseTime()
     {
         isPaused = false;
-        Time.timeScale = 1f;
-        EnableButtons();
-        playBtn.interactable = false;
+        Time.timeScale = 2f;
+
+        pauseButton.interactable = true;
+        playButton.interactable = false;
+        ffwButton.interactable = true;
     }
 
-    public void LoadData(GameData data)
+    // Function to fast forward the time by 2x
+    public void FastForwardTime()
     {
-        this.currentMonth = data.currentMonth;
-        this.currentYear = data.currentYear;
-    }
+        isPaused = false;
+        Time.timeScale = 4f;
 
-    public void SaveData(ref GameData data)
-    {
-        data.currentMonth = this.currentMonth;
-        data.currentYear = this.currentYear;
-    }
-
-    public void EnableButtons()
-    {
-        playBtn.interactable = true;
-        pauseBtn.interactable = true;
-        fastForwardBtn.interactable = true;
+        pauseButton.interactable = true;
+        playButton.interactable = true;
+        ffwButton.interactable = false;
     }
 }

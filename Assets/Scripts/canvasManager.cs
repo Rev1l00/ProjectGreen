@@ -1,24 +1,33 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class canvasManager : MonoBehaviour
 {
-    public GameObject contButtons;
     public TMP_Text continentText;
+    public TMP_Text researchContinentText;
+    public Button researchButton;
 
     public string selectedCont = "None";
-
-    public void disableContButtons()
+    
+    public void Start()
     {
-        contButtons.SetActive(false);
+        researchButton.interactable = false;
     }
 
-    public void btn_pressed(string buttonName)
+    public void Btn_pressed(string buttonName)
     {
-        contButtons.SetActive(false);   // Disable the buttons
         selectedCont = buttonName;       // Set selectedCont to the name of the pressed button
         continentText.SetText(selectedCont);    // Set the continentText
-        contButtons.SetActive(true);    // Enable the buttons
+        researchContinentText.SetText(selectedCont);
+        researchButton.interactable = true;
     }
 
+    public void OceanPressed()
+    {
+        researchButton.interactable = false;
+        selectedCont = "World";
+        continentText.SetText(selectedCont);
+    }
 }
