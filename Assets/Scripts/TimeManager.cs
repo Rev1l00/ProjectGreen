@@ -4,6 +4,20 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
+    public static TimeManager Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private const int SecondsInDay = 1;
     private const int DaysInMonth = 30;
     private const int MonthsInYear = 12;
@@ -16,9 +30,11 @@ public class TimeManager : MonoBehaviour
     private int month = 1;
     private int day = 1;
     private float timer = 0f;
-    private bool isPaused = true;
+    public bool isPaused = true;
 
     public TMP_Text dateText;
+
+    public CO2Simulator co2Simulator;
 
     void Update()
     {
@@ -33,6 +49,8 @@ public class TimeManager : MonoBehaviour
                 // Update the day
                 timer -= SecondsInDay;
                 day++;
+
+                co2Simulator.SimulateCO2Increase(1);
 
                 // Check if the month needs to be updated
                 if (day > DaysInMonth)
@@ -60,6 +78,9 @@ public class TimeManager : MonoBehaviour
         string formattedDay = day.ToString().PadLeft(2, '0');
         string formattedMonth = month.ToString().PadLeft(2, '0');
         dateText.text = string.Format("{0}/{1}/{2}", formattedDay, formattedMonth, year);
+
+        // Update the CO2 percentage text
+        co2Simulator.co2Text.text = string.Format("CO2%: {0:F1}", co2Simulator.currentCO2Percentage);
     }
 
     // Function to pause the time
