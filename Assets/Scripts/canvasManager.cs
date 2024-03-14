@@ -10,24 +10,24 @@ public class canvasManager : MonoBehaviour
     public Button researchButton;
 
     public string selectedCont = "None";
-    
+
+    public ResearchManager researchManager;
+
     public void Start()
     {
         researchButton.interactable = false;
     }
 
-    public void Btn_pressed(string buttonName)
+    public void BtnPressed(string buttonName)
     {
-        selectedCont = buttonName;       // Set selectedCont to the name of the pressed button
-        continentText.SetText(selectedCont);    // Set the continentText
+        selectedCont = buttonName;
+        continentText.SetText(selectedCont);
         researchContinentText.SetText(selectedCont);
         researchButton.interactable = true;
     }
 
-    public void OceanPressed()
+    public void OpenResearchMenu()
     {
-        researchButton.interactable = false;
-        selectedCont = "World";
-        continentText.SetText(selectedCont);
+        researchManager.AddResearchStation(selectedCont);
     }
 }

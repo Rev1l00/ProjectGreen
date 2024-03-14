@@ -4,7 +4,7 @@ using TMPro;
 public class CO2Simulator : MonoBehaviour
 {
     public float initialCO2Percentage = 600f; // Initial CO2 percentage
-    public float dailyCO2IncreasePercentage = 0.5f; // Daily increase percentage
+    public float dailyCO2IncreasePercentage = 1.1f; // Daily increase percentage
 
     public float currentCO2Percentage; // Current CO2 percentage
 
@@ -22,7 +22,7 @@ public class CO2Simulator : MonoBehaviour
         // Simulate CO2 increase for the given number of days
         for (int i = 0; i < numberOfDays; i++)
         {
-            currentCO2Percentage += dailyCO2IncreasePercentage;
+            currentCO2Percentage *= dailyCO2IncreasePercentage;
         }
 
         // Update TMP text object
